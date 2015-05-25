@@ -1,33 +1,33 @@
 <div class="merchant-detail-info">
     <div class="follow-link">
-        {{get_follow_link($fromer,$leader)}}
+       {{-- {{get_follow_link($fromer,$leader)}}--}}
     </div>
     <div class="personal-info">
-        <img src="{{$leader->image?AppHelper::imgSrc($leader->image->url):''}}" />
+        <img src="{{$leader->detail->image_id > 0?AppHelper::imgSrc($leader->detail->image->url):''}}" />
         <table >
             <tr>
                 <td>
-                    <b>{{$leader->username}}({{get_follow_link_name($leader->merchant_grade,$sc)}})</b>
-                    <div class="action-button-groups">
+                    <b>{{$leader->detail->username}}{{--({{get_follow_link_name($leader->merchant_grade,$sc)}})--}}</b>
+                    {{--<div class="action-button-groups">
                         {{get_merchant_detail_status_action($leader)}}
-                    </div>
+                    </div>--}}
                 </td>
             </tr>
             <tr>
                 <td>
-                    <e>店铺名:{{$leader->shop&&$leader->shop->name?$leader->shop->name:'--'}}</e> |
+                   {{-- <e>店铺名:{{$leader->shop&&$leader->shop->name?$leader->shop->name:'--'}}</e> |--}}
                     <e>注册时间:{{$leader->created_at}}</e> |
-                    <e>所在地:{{$leader->region_id}}</e> |
-                    <e>手机号:{{$leader->mobile}}</e> |
-                    <e>身份证号:{{$leader->identity_num}}</e> |
-                    <e>状态: {{get_merchant_status()[$leader->status]}}</e>
+                    <e>所在地:{{get_address($leader->detail->region_id)}}</e> |
+                    <e>手机号:{{$leader->mobile}}</e>
+                   {{-- <e>身份证号:{{$leader->identity_num}}</e> |--}}
+                   {{-- <e>状态: {{get_merchant_status()[$leader->status]}}</e>--}}
                 </td>
             </tr>
         </table>
     </div>
 
     <div style="clear: both;"></div>
-    <div class="other-info">
+    {{--<div class="other-info">
         <h4 class="title">店铺信息</h4>
         <div class="detail-info">
             <table>
@@ -45,7 +45,7 @@
             </table>
         </div>
 
-    </div>
+    </div>--}}
 
     <div style="clear: both;"></div>
     <div class="other-info">
@@ -55,9 +55,9 @@
                 <tr>
                     <td>
                         <div class="order-info">
-                            <e> {{get_follow_link_name($leader->merchant_grade+1,$sc)}}:{{$leader->follower_num}}</e> |
-                            <e> 销售额:{{get_follower_total_pay($leader)}}</e> |
-                            <e> 订单:{{get_follower_total_order($leader)}}</e> |
+                            <e> {{--{{get_follow_link_name($leader->merchant_grade+1,$sc)}}--}}下级:{{get_customer_agent_num($leader->id)}}</e> |
+                            {{--<e> 销售额:{{get_follower_total_pay($leader)}}</e> |
+                            <e> 订单:{{get_follower_total_order($leader)}}</e> |--}}
                             <e> 分润:{{$leader->follower_profit}}</e>
                         </div>
                     </td>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>优理氏(米酷定制)后台管理</title>
+    <title>初睿后台管理</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.css">
@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ URL::route('profit.merchants',array('type'=>'1')) }}">
+                <a href="{{ URL::route('profit.merchants',array('type'=>'0')) }}">
                     <span class="icon icon-activity"></span>分润
                 </a>
             </li>

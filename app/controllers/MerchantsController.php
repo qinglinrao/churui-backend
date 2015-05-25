@@ -183,11 +183,10 @@ class MerchantsController extends  BaseController{
      * @return mixed 根据商家类型 merchant_grade 来查询不同类型的商家列表
      */
     public function getMerchants($type){
-
         //获取排序列名和排序值
         //排序列(total_pay,follower_num,money)
         //排序值(asc,desc)
-        $sort_name = Input::get('sort_name')?Input::get('sort_name'):'total_pay';
+        $sort_name = Input::get('sort_name')?Input::get('sort_name'):'total_profit';
         $sort_val= Input::get('sort_val')?Input::get('sort_val'):'desc';
 
         //当BA选折以follower_num来排序时,将列名改为customer_num,
@@ -196,7 +195,7 @@ class MerchantsController extends  BaseController{
 
         //搜索模糊查询 (用户名或手机号码)
         $query = trim(Input::get('query'));
-        $merchants = Merchant::with('image','leader','follower')->where('merchant_grade',$type);
+        $merchants = Customer::with('detail.image','leader','follower');
         isset($query) && !empty($query) ? $merchants = $merchants->where(function($q) use($query){
             $q->where('username','like','%'.$query.'%')->orWhere('mobile','like','%'.$query.'%');
         }) : '';
@@ -365,9 +364,9 @@ class MerchantsController extends  BaseController{
     public function getDetail($id){
         $from_id = Input::get('from');
 //        $leader_id = Input::get('leader');
-        $leader = Merchant::where('id',$id)->first();
-        $fromer = Merchant::where('id',$from_id)->first();
-        $merchants = Merchant::where('leader_id',$id);
+        $leader = Customer::where('id',$id)->first();
+        $fromer = Customer::where('id',$from_id)->first();
+        $merchants = Customer::where('leader_id',$id);
 
         $show_customer = Input::get('sc')==1?1:0;
         //当前商家为BA时,其下线显示的是顾客
@@ -389,7 +388,7 @@ class MerchantsController extends  BaseController{
             //获取排序列名和排序值
             //排序列(total_pay,follower_num,money)
             //排序值(asc,desc)
-            $sort_name = Input::get('sort_name')?Input::get('sort_name'):'total_pay';
+            $sort_name = Input::get('sort_name')?Input::get('sort_name'):'total_profit';
             $sort_val= Input::get('sort_val')?Input::get('sort_val'):'desc';
             //当BA选折以follower_num来排序时,将列名改为customer_num,
             //因为 BA在页面中显示的是客户数量 而不是下线数量
@@ -415,8 +414,8 @@ class MerchantsController extends  BaseController{
      * @return $this
      */
     public function getAccountLog($id){
-        $leader = Merchant::where('id',$id)->first();
-        $account_logs = MerchantAccountLog::where('merchant_id',$id)->orderBy('updated_at')->paginate(10);
+        $leader = Customer::where('id',$id)->first();
+        $account_logs = CustomerAccountLog::where('customer_id',$id)->orderBy('updated_at')->paginate(10);
         return View::make('profits.account_log')
                     ->with('leader',$leader)
                     ->with('account_logs',$account_logs);

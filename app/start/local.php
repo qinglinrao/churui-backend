@@ -239,10 +239,18 @@ function get_follower_code_name($type){
 }
 
 function get_follower_num($merchant){
-    if($merchant->merchant_grade == 3){
-        return $merchant->customer_num;
-    }
-    return $merchant->follower_num;
+    /*if($merchant->leader_id == 0){*/
+
+        return Customer::where('leader_id',$merchant->id)->count();
+   /* }*/
+
+}
+
+function get_address($id){
+    return Region::where('id',$id)->first()->name;
+}
+function get_customer_agent_num($id){
+return Customer::where('leader_id',$id)->count();
 }
 
 

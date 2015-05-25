@@ -5,12 +5,12 @@
     <li class="{{ Active::path('profit/1/list') }}">
       <a href="{{ URL::route('profit.merchants', ['type'=>'1']) }}">代理商</a>
     </li>
-    <li class="{{ Active::path('profit/2/list') }}">
+   {{-- <li class="{{ Active::path('profit/2/list') }}">
       <a href="{{ URL::route('profit.merchants', ['type'=>'2']) }}">门店</a>
     </li>
     <li class="{{ Active::path('profit/3/list') }}">
       <a href="{{ URL::route('profit.merchants', ['type'=>'3']) }}">BA</a>
-    </li>
+    </li>--}}
   </ul>
   <ul>
      <li class="{{ Active::path('profit') }}">

@@ -27,6 +27,14 @@ class Customer extends Eloquent {
         return $this->hasMany('CustomerOrder','customer_id','id');
     }
 
+    public function leader(){
+        return $this->belongsTo('Customer','leader_id');
+    }
+
+    public function follower(){
+        return $this->hasMany('Customer','leader_id');
+    }
+
 
 
 }

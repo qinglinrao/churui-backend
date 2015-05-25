@@ -51,9 +51,9 @@
 
                             {{get_account_log_status()[$log->status]}}
                         </td>
-                        <td width="100">
+                        {{--<td width="100">
                             {{get_account_status_action($log)}}
-                        </td>
+                        </td>--}}
                     </tr>
                 @endforeach
                 </tbody>

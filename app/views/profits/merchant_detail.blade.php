@@ -16,9 +16,9 @@
                     <th>注册时间</th>
                     <th>手机号</th>
                     <th>所在地</th>
-                    <th>状态</th>
+                    {{--<th>状态</th>--}}
                     <th>上线</th>
-                    <th>销售额<b class="table-sort {{$sort_name=='total_pay'?'sort-'.$sort_val:''}}" data-name="total_pay" ><e class="asc">▲</e><e class="desc">▼</e></b></th>
+                    {{--<th>销售额<b class="table-sort {{$sort_name=='total_pay'?'sort-'.$sort_val:''}}" data-name="total_pay" ><e class="asc">▲</e><e class="desc">▼</e></b></th>--}}
                     <th>{{get_follower_code_name($leader->merchant_grade+1)}}<b class="table-sort {{$sort_name=='follower_num'?'sort-'.$sort_val:''}}" data-name="follower_num"><e class="asc">▲</e><e class="desc">▼</e></b></th>
                     <th>分润<b class="table-sort  {{$sort_name=='money'?'sort-'.$sort_val:''}} " data-name="money" ><e class="asc">▲</e><e class="desc">▼</e></b></th>
                     <th></th>
@@ -39,7 +39,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href="#">{{$merchant['username']}}</a> <br/>
+                            <a href="#">{{$merchant->detail->username}}</a> <br/>
                             {{--<span>{{$merchant->level->name}}</span>--}}
                         </td>
                         <td>
@@ -49,27 +49,27 @@
                             {{$merchant->mobile}} <br/>
                         </td>
                         <td>
-                            {{$merchant->region_id}}
+                            {{get_address($merchant->detail->region_id)}}
                         </td>
-                        <td>
+                       {{-- <td>
                             {{get_merchant_status()[$merchant->status]}}
-                        </td>
+                        </td>--}}
                         <td>
-                            <a href="{{get_follow_url($merchant->leader,$merchant->leader)}}">{{$merchant->leader->username}}</a>
+                            <a href="{{get_follow_url($merchant->leader,$merchant->leader)}}">{{$merchant->leader->detail->username}}</a>
                         </td>
-                        <td>
+                       {{-- <td>
 
                             {{$merchant->total_pay}}元
-                        </td>
+                        </td>--}}
                         <td>
                             <a href="{{URL::route('merchants.detail',array('id'=>$merchant->id)).'?from='.$fromer->id}}"> {{get_follower_num($merchant)}}</a>
                         </td>
                         <td>
                             {{$merchant->money}}元
                         </td>
-                        <td width="100">
+                        {{--<td width="100">
                             {{get_merchant_status_action($merchant)}}
-                        </td>
+                        </td>--}}
                     </tr>
                 @endforeach
                 </tbody>
