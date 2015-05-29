@@ -28,7 +28,7 @@
     <div class="container">
         <div class="logo">
             <a href="{{ Config::get('app.url') }}">
-                {{ HTML::image('images/mikudingzhi.png') }}
+                {{ HTML::image('images/mikudingzhi.png','',array('width'=>'130px','height'=>'65px')) }}
             </a>
         </div>
         <ul class="main-nav">
@@ -74,7 +74,7 @@
         	<a href="#" class="head-portrait">
         	   <img src="/images/head-portrait.jpg">
         	</a>
-        	<a href="#" class="login-account">管理员({{Auth::user()->email?Auth::user()->email:Auth::user()->mobile}})</a>
+        	<a href="#" class="login-account">初睿后台管理员({{Auth::user()->email?Auth::user()->email:Auth::user()->mobile}})</a>
         	<span class="drop-down" >
         	    <b></b>
                 <ul class="button-dropdown-list">

@@ -5624,8 +5624,8 @@ button.close {
       padding: 0px 5px;
       float: left; }
 
-.login-inf {
-  float: right;
+.login-inf {/*
+  float: right;*/
   padding-top: 30px;
   line-height: 54px;
   position: relative; }
